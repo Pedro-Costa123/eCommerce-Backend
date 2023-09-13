@@ -34,7 +34,7 @@ public class Product {
     private BigDecimal unitPrice;
 
     @Column(name = "image_url")
-    private String imageURL;
+    private String imageUrl;
 
     @Column(name = "active")
     private boolean active;
@@ -90,12 +90,12 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public boolean isActive() {
@@ -135,12 +135,12 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return active == product.active && unitsInStock == product.unitsInStock && Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(unitPrice, product.unitPrice) && Objects.equals(imageURL, product.imageURL) && Objects.equals(dateCreated, product.dateCreated) && Objects.equals(lastUpdated, product.lastUpdated);
+        return active == product.active && unitsInStock == product.unitsInStock && Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(unitPrice, product.unitPrice) && Objects.equals(imageUrl, product.imageUrl) && Objects.equals(dateCreated, product.dateCreated) && Objects.equals(lastUpdated, product.lastUpdated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sku, name, description, unitPrice, imageURL, active, unitsInStock, dateCreated, lastUpdated);
+        return Objects.hash(id, sku, name, description, unitPrice, imageUrl, active, unitsInStock, dateCreated, lastUpdated);
     }
 
     @Override
@@ -151,7 +151,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", unitPrice=" + unitPrice +
-                ", imageURL='" + imageURL + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", active=" + active +
                 ", unitsInStock=" + unitsInStock +
                 ", dateCreated=" + dateCreated +
