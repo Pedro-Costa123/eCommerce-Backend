@@ -15,4 +15,3 @@ Backend code for the eCommerce App project, using Spring Boot
 ## Resources:
 - [Spring Initializr](https://start.spring.io/)
 - [Spring Tutorials and Guides](https://www.baeldung.com/)
-- 
