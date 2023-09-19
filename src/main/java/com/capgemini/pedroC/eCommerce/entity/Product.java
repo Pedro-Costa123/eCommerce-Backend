@@ -15,7 +15,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long Id;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -51,11 +51,11 @@ public class Product {
     private Date lastUpdated;
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getSku() {
@@ -135,18 +135,18 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return active == product.active && unitsInStock == product.unitsInStock && Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(unitPrice, product.unitPrice) && Objects.equals(imageUrl, product.imageUrl) && Objects.equals(dateCreated, product.dateCreated) && Objects.equals(lastUpdated, product.lastUpdated);
+        return active == product.active && unitsInStock == product.unitsInStock && Objects.equals(Id, product.Id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(unitPrice, product.unitPrice) && Objects.equals(imageUrl, product.imageUrl) && Objects.equals(dateCreated, product.dateCreated) && Objects.equals(lastUpdated, product.lastUpdated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sku, name, description, unitPrice, imageUrl, active, unitsInStock, dateCreated, lastUpdated);
+        return Objects.hash(Id, sku, name, description, unitPrice, imageUrl, active, unitsInStock, dateCreated, lastUpdated);
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + Id +
                 ", sku='" + sku + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
