@@ -1,5 +1,6 @@
 package com.capgemini.pedroC.eCommerce.security;
 
+import com.capgemini.pedroC.eCommerce.entity.Order;
 import com.capgemini.pedroC.eCommerce.entity.Product;
 import com.capgemini.pedroC.eCommerce.entity.ProductCategory;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -19,6 +20,11 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
         config.getExposureConfiguration()
                 .forDomainType(ProductCategory.class)
+                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+
+        config.getExposureConfiguration()
+                .forDomainType(Order.class)
                 .withItemExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
