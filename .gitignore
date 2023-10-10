@@ -34,3 +34,6 @@ build/
 
 #Key
 /src/main/resources/eCommerce-keystore.p12
+
+#Stripe Key
+.env

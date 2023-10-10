@@ -1,17 +1,21 @@
 package com.capgemini.pedroC.eCommerce.service;
 
 import com.capgemini.pedroC.eCommerce.dao.CustomerRepository;
+import com.capgemini.pedroC.eCommerce.dto.PaymentInfo;
 import com.capgemini.pedroC.eCommerce.dto.Purchase;
 import com.capgemini.pedroC.eCommerce.dto.PurchaseResponse;
 import com.capgemini.pedroC.eCommerce.entity.Customer;
 import com.capgemini.pedroC.eCommerce.entity.Order;
 import com.capgemini.pedroC.eCommerce.entity.OrderItem;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import io.github.cdimascio.dotenv.*;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
@@ -21,6 +25,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Autowired
     public CheckoutServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+        Stripe.apiKey = Dotenv.load().get("STRIPE_KEY");
     }
 
     @Override
@@ -52,6 +57,19 @@ public class CheckoutServiceImpl implements CheckoutService {
         customerRepository.save(customer);
 
         return new PurchaseResponse(orderTrackingNumber);
+    }
+
+    @Override
+    public PaymentIntent createPaymentIntent(PaymentInfo paymentInfo) throws StripeException {
+        List<String> paymentMethodTypes = new ArrayList<>();
+        paymentMethodTypes.add("card");
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("amount", paymentInfo.getAmount());
+        params.put("currency", paymentInfo.getCurrency());
+        params.put("payment_method_types", paymentMethodTypes);
+
+        return PaymentIntent.create(params);
     }
 
     private String generateOrderTrackingNumber() {
